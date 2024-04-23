@@ -1,16 +1,25 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load static %}
 
 
 
+=======
+{% extends "main/base.html" %}
+{% load static %}
+
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
 {% block css %}
     <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
 {% endblock  %}
 
+<<<<<<< HEAD
 {% block modal_cart %}
 {% include "includes/cart_button.html" %}
 {% endblock modal_cart %}
 
+=======
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
 {% block content %}
     <div class="mt-5 pt-5 bg-white custom-shadow rounded">
         <h2 class='m-2'><strong>{{ content }}</strong></h2>
@@ -22,7 +31,11 @@
 {% block footer %}
 <footer class="py-4 bg-dark">
     <div class="container">
+<<<<<<< HEAD
         <p class="m-0 text-center text-white">Copyright &copy; Home Studio 2024</p>
+=======
+        <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023</p>
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
     </div>
 </footer>
 {% endblock  %}

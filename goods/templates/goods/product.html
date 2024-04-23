@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load static %}
 
@@ -5,6 +6,11 @@
 {% include "includes/cart_button.html" %}
 {% endblock modal_cart %}
 
+=======
+{% extends "main/base.html" %}
+{% load static %}
+
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
 {% block content %}
 <div class="container mt-5">
     <div class="card mb-4 custom-shadow">
@@ -40,10 +46,14 @@
             <p class="card-text">Цена: <strong>{{ product.sell_price }} $</strong></p>
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.description }}</p>
+<<<<<<< HEAD
             <a href="{% url "cart:cart_add" %}" class="btn btn-dark add-to-cart"
             data-product-id="{{ product.id }}">
             {% csrf_token %}
             Добавить в корзину</a>
+=======
+            <a href="#" class="btn btn-dark add-to-cart">Добавить в корзину</a>
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
         </div>
     </div>
 </div>

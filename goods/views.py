@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.core.paginator import Paginator
 from django.shortcuts import get_list_or_404, render
 
@@ -34,6 +35,25 @@ def catalog(request,category_slug=None):
         'title': "Home-Каталог",
         'goods': current_page,
         "slug_url": category_slug,
+=======
+from django.shortcuts import render
+
+from goods.models import Products
+
+# Create your views here.
+
+def catalog(request,category_slug):
+    
+    if category_slug == 'all':
+        goods = Products.objects.all()
+    else:
+        goods = Products.objects.filter(category__slug=category_slug)
+        
+            
+    context = {
+        'title': "Home-Каталог",
+        'goods': goods,
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
     }
     return render(request,"goods/catalog.html",context) 
 

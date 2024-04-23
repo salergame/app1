@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
+<<<<<<< HEAD
 from django.contrib.auth.views import (
     LogoutView, 
     PasswordResetView, 
@@ -42,6 +43,15 @@ urlpatterns = [
     # path('courier/',include('courier.urls',namespace='couriers')),
     path('accounts/', include('allauth.urls')),
 
+=======
+
+from app import settings
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('main.urls', namespace='main')),
+    path('catalog/',include('goods.urls', namespace='catalog')),
+>>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
 ]
 
 if settings.DEBUG:
