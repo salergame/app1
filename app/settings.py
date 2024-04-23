@@ -174,7 +174,6 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-<<<<<<< HEAD
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/user/login/'
 
@@ -228,5 +227,3 @@ MAP_WIDGETS = {
  ),
  "GOOGLE_MAP_API_KEY": GOOGLE_MAP_API_KEY
 }
-=======
->>>>>>> 7203c0d3ca24d97ad35e4406b64f3838b5a5f355
