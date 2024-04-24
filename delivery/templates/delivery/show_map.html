@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block search %}
+<form class="d-flex" role="search" action="#" method="get">
+  <input class="form-control me-2" type="search" name="q" placeholder="Addres" aria-label="Addres">
+  <button class="btn btn-outline-success text-white btn-block" type="submit" style="width: 100%;">Поиск по адресу</button>
+</form>
+
+{% endblock search %}
+
+{% comment %} <div class="row">
+  <div class="container mt-5">
+      <div class="row justify-content-center">
+          <div class="col-md-6 bg-white p-4 mb-4 mx-3 rounded custom-shadow">
+            {{m|safe}}
+          </div>
+      </div>
+  </div> 
+</div> {% endcomment %}
+{% block content %}
+<div class="row">
+  <div class="container mt-5" >
+      <div class="row justify-content-center">
+          <div class="col-md-8 bg-white p-4 mb-4 mx-3 rounded custom-shadow">
+            <h2 class="text-center mb-4">Карта</h2>
+            {{m|safe}}
+          </div>
+      </div>
+  </div> 
+</div>
+{% endblock content %}
+{% comment %} <div class="container">
+  <div class="row mt-4">
+    <div class="col-md-10 offset-md-1">
+      <h3>Карта</h3>
+        {{m|safe}}
+    </div>
+  </div>
+</div> {% endcomment %}

@@ -39,7 +39,7 @@ urlpatterns = [
     path('cart/',include('carts.urls', namespace='cart')),
     path('orders/', include('orders.urls',namespace='orders')),
     path("api/", include("api.urls")),
-    # path('courier/',include('courier.urls',namespace='couriers')),
+    path('delivery/',include('delivery.urls',namespace='delivery')),
     path('accounts/', include('allauth.urls')),
 
 ]

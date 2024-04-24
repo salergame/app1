@@ -40,7 +40,9 @@
                                 Информация
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a class="dropdown-item  text-white" href="{% url "delivery:showmap" %}">Доставка и оплата</a></li>
+                            {% endif %}
                                 <li><a class="dropdown-item  text-white" href="#">Контактная информация</a></li>
                                 <li><a class="dropdown-item  text-white" href="{% url "main:about" %}">Про нас</a></li>
                             </ul>
@@ -73,10 +75,13 @@
                             </li> 
                         {% endif %}
                     </ul>
+                    {% block search %}
                     <form class="d-flex" role="search" action="{% url "catalog:search" %}" method="get">
                         <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success text-white" type="submit">Поиск</button>
                     </form>
+                    {% endblock search %}
+                    
                 </div>
             </div>
         </nav>
