@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 import folium
+from folium import plugins
 from delivery.forms import SearchForm
 import geocoder
 from django.http import HttpResponse
@@ -25,6 +26,8 @@ def show_map(request):
     
     min_lon, max_lon = 85, 50
     min_lat, max_lat = 55, 40
+ 
+    #Отрисовка карты с ограничениямия
     m = folium.Map(
         max_bounds=True,
         location=[48.39779862449,70.192611690145],
@@ -33,13 +36,28 @@ def show_map(request):
         max_lat=max_lat,
         min_lon=min_lon,
         max_lon=max_lon,
-    )
-    folium.Marker([lat,lng],tootlip='Нажми на меня',
-                  popup=address).add_to(m)
-    # folium.CircleMarker([max_lat, min_lon], tooltip="Upper Left Corner").add_to(m)
-    # folium.CircleMarker([min_lat, min_lon], tooltip="Lower Left Corner").add_to(m)
-    # folium.CircleMarker([min_lat, max_lon], tooltip="Lower Right Corner").add_to(m)
-    # folium.CircleMarker([max_lat, max_lon], tooltip="Upper Right Corner").add_to(m)
+    )  
+
+    #Маркера
+    #Маркер поиска 
+    plugins.LocateControl(
+        auto_start=False,
+        strings={"title": "Посмотреть свое место нахождение", "popup": "Ваша позиция"},
+        ).add_to(m)
+
+    folium.Marker(
+        [lat,lng],
+        tootlip='Нажми на меня',
+        popup=address
+        ).add_to(m)
+    
+    #Маркер магазина 
+    folium.Marker(
+        location=[51.0910,71.4180],
+        popup='Магазин мебели HOME'
+    ).add_to(m)
+    
+    
     m = m._repr_html_()
     context= {
         'm':m,
