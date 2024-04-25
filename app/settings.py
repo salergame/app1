@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 from django.conf.global_settings import MEDIA_URL
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 SITE_ID = 1
 
@@ -24,10 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2apt!#m1d-^r(0w83d_o5gzmmfjd0jg!)t2&u#3k+!(!10&cy_'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -107,11 +111,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'home',
-        'USER': 'home',
-        'PASSWORD': 'home',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
@@ -213,8 +217,8 @@ SOCIALACCOUNT_PROVIDERS = {
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_PORT = 25
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'salergame07@gmail.com'
-EMAIL_HOST_PASSWORD = 'ogjm ujcx zwzq tbbz'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / "emails"
 
