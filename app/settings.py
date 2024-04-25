@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "debug_toolbar",
     "django_filters",
+    "crispy_forms",
+    "crispy_bootstrap4",
     
     'main',
     'goods',
@@ -216,13 +218,6 @@ EMAIL_HOST_PASSWORD = 'ogjm ujcx zwzq tbbz'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / "emails"
 
-GOOGLE_MAP_API_KEY = 'AIzaSyADfCtqkBiMxMGxkYQIRoKanj4uW2n1L-A'
-MAP_WIDGETS = {
- "GooglePointFieldWidget": (
- ("zoom", 15),
- ("mapCenterLocationName", "amsterdam"),
- ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'nl'}}),
- ("markerFitZoom", 12),
- ),
- "GOOGLE_MAP_API_KEY": GOOGLE_MAP_API_KEY
-}
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+

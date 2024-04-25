@@ -5,4 +5,5 @@ app_name= 'delivery'
 
 urlpatterns =[
     path('showmap/',views.show_map,name='showmap'),    
+    
 ]
