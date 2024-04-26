@@ -26,7 +26,7 @@ services:
       - ./public:/code/public
 
   db:
-    image: postgres:10-alpine
+    image: postgres:14.4-alpine
     restart: always
     env_file:
     - .env

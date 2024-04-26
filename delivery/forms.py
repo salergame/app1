@@ -4,7 +4,4 @@ from delivery.models import Search
 class SearchForm(forms.ModelForm):
     class Meta:
         model = Search
-        fields = [
-            'address',
-            
-        ]
+        fields = ['address',]
