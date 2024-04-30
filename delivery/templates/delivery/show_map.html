@@ -13,6 +13,68 @@
 {% endblock search %}
 
 {% block content %}
+
+{% if not has_paid_orders %}
+<div class="row">
+  <div class="container mt-5">
+      <div class="row justify-content-center">
+          <div class="col-md-9 bg-white p-4 mb-5 mx-2 rounded custom-shadow">
+              <h2 class="text-center mb-4">Оплата по карте</h2>
+              <form action="{% url "delivery:showmap" %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                      <div class="col-md-12 mb-3">
+                          <label for="id_card_number" class="form-label">Номер карты*</label>
+                          <input type="text" class="form-control" id="id_card_number"
+                              value="{% if form.card_number.value %}{{form.card_number.value}}{% endif %}"
+                              name="card_number"
+                              placeholder="Введите номер карты" required>
+                              {% if form.card_number.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.card_number.errors}}</div>
+                              {% endif %}
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="id_expiration_date" class="form-label">Срок действия*</label>
+                          <input type="text" class="form-control" id="id_expiration_date"
+                              value="{% if form.expiration_date.value %}{{form.expiration_date.value}}{% endif %}"
+                              name="expiration_date"
+                              placeholder="MM/ГГ" required>
+                              {% if form.expiration_date.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.expiration_date.errors}}</div>
+                              {% endif %}
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="id_cvv" class="form-label">CVV*</label>
+                          <input type="password" class="form-control" id="id_cvv"
+                              value="{% if form.cvv.value %}{{form.cvv.value}}{% endif %}"
+                              name="cvv"
+                              placeholder="CVV" required>
+                              {% if form.cvv.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.cvv.errors}}</div>
+                              {% endif %}
+                      </div>
+                      <div class="col-md-12 mb-3">
+                          <label for="id_cardholder_name" class="form-label">Имя владельца карты*</label>
+                          <input type="text" class="form-control" id="id_cardholder_name"
+                              value="{% if form.cardholder_name.value %}{{form.cardholder_name.value}}{% endif %}"
+                              name="cardholder_name"
+                              placeholder="Введите имя владельца карты" required>
+                              {% if form.cardholder_name.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.cardholder_name.errors}}</div>
+                              {% endif %}
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-dark btn-block">Оплатить</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+{% endif %}
+
+{% if has_paid_orders or payment_on_get_orders %}
 <div class="row">
   <div class="container mt-5" >
       <div class="row justify-content-center">
@@ -20,52 +82,8 @@
             <h2 class="text-center mb-4">Карта</h2>
             {{m|safe}}
           </div>
-          <div class="col-md-12">
-            <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
-                <h3 class="text-center mb-4">Мои заказы</h3>
-                <!-- Разметка заказов -->
-                <div class="container">
-                    <div class="accordion" id="accordionExample">
-                        {% for order in orders %}
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading{{ order.id }}">
-                                <button class="accordion-button {% if order != orders.0 %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
-                                    Заказ № {{ order.id }} - {{ order.created_timestamp }} | Статус: <strong class="mx-2">{{order.requires_delivery}}</strong>
-                                </button>
-                            </h2>
-                            <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders.0 %}show{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <table class="table table-dark table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Товар</th>
-                                                <th>Количество</th>
-                                                <th>Цена</th>
-                                                <th>Общая стоимость</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for item in order.orderitem_set.all %}
-                                            <tr>
-                                                <td><a class="text-white" href="{% url 'goods:product' item.product.slug %}">{{ item.product.name }}</a></td>
-                                                <td>{{ item.quantity }}</td>
-                                                <td>{{ item.price }}</td>
-                                                <td>{{ item.products_price }}</td>
-                                                
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!-- Закончилась разметка заказов -->
-            </div>
-        </div>
       </div>
   </div> 
 </div>
+{% endif %}
 {% endblock content %}
